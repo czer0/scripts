@@ -1,4 +1,5 @@
-Set-ExplorereOptions -showFileExtensions
+Set-ExecutionPolicy Unrestricted -Force
+Set-WindowsExplorerOptions -EnableShowFileExtensions
 Install-WindowsUpdate -acceptEula -SuppressReboots
 Disable-InternetExplorerESC
 Disable-UAC
