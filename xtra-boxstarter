@@ -1,0 +1,38 @@
+Set-ExplorereOptions -showFileExtensions
+Install-WindowsUpdate -acceptEula -SuppressReboots
+Disable-InternetExplorerESC
+Disable-UAC
+Enable-RemoteDesktop
+Enable-MicrosoftUpdate
+
+cinst ChocolateyPackageUpdater
+cinst ChocolateyGUI
+cinst cdburnerxp
+cinst winscp
+cinst 7zip.install
+cinst GoogleChrome
+cinst firefox
+cinst flashplayeractivex
+cinst flashplayerplugin
+cinst adobereader
+cinst ccleaner
+cinst paint.net
+cinst PowerShell
+cinst DotNet3.5
+cinst DotNet4.5
+cinst DotNet4.5.1
+cinst notepadplusplus.install
+cinst javaruntime
+cinst java.jdk
+cinst python 
+cinst putty 
+cinst sysinternals 
+cinst filezilla 
+cinst teamviewer 
+cinst lockhunter 
+cinst skype 
+cinst virtualbox 
+cinst Wget 
+cinst k-litecodecpackbasic 
+cinst foobar2000 
+cinst mpc-hc
