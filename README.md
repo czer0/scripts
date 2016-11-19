@@ -1,4 +1,4 @@
 scripts
 =======
 
-Vaious scripts
+Various scripts
