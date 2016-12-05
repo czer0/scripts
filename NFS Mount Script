@@ -1,0 +1,7 @@
+# mount NFS shares from NAS
+192.168.2.14:/volume1/mail /mnt/nfs/mail/ nfs nouser,atime,auto,rw,dev,exec,suid 0 0
+192.168.2.14:/volume1/server /mnt/nfs/server/ nfs nouser,atime,auto,rw,dev,exec,suid 0 0
+192.168.2.14:/volume1/serv-nix /mnt/nfs/serv-nix/ nfs nouser,atime,auto,rw,dev,exec,suid 0 0
+192.168.2.14:/volume1/xsql01 /mnt/nfs/xsql01/ nfs  nouser,atime,auto,rw,dev,exec,suid 0 0
+
+sudo /etc/init.d/nfs-kernel-server stop 
