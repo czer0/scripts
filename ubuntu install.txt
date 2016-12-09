@@ -1,0 +1,139 @@
+Linux box setup
+
+Install joe
+sudo apt-get install joe
+
+Edit repository file
+sudo joe /etc/apt/sources.list
+uncomment
+## Uncomment the following two lines to add software from Canonical's
+## 'partner' repository.
+## This software is not part of Ubuntu, but is offered by Canonical and the
+## respective vendors as a service to Ubuntu users.
+# deb http://archive.canonical.com/ubuntu trusty partner
+# deb-src http://archive.canonical.com/ubuntu trusty partner
+
+## Uncomment the following two lines to add software from Ubuntu's
+## 'extras' repository.
+## This software is not part of Ubuntu, but is offered by third-party
+## developers who want to ship their latest software.
+# deb http://extras.ubuntu.com/ubuntu trusty main
+# deb-src http://extras.ubuntu.com/ubuntu trusty main
+
+
+Run updates
+# sudo apt-get update
+
+
+# Fix public key missing error
+sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com insertmissingkeyhere (eg 16126D3A3E5C1192)
+
+Run Dist upgrade
+# sudo apt-get dist-upgrade
+
+
+Set static IP
+
+# sudo joe /etc/network/interfaces
+
+# The primary network interface
+auto eth0
+iface eth0 inet static
+	address 10.10.50.2
+    netmask 255.255.255.0
+	gateway 10.10.50.1
+    dns-nameservers 8.8.8.8 8.8.4.4 24.222.0.96 24.222.0.95
+	
+
+Restart network interface
+# sudo ifdown eth0 && sudo ifup eth0	
+	
+	
+Prevent laptop from sleeping
+
+Change laptop lid operation
+# sudo joe /etc/systemd/logind.conf
+
+uncomment HandleLidSwitch=suspend
+change to HandleLidSwitch=ignore
+
+Restart the systemd daemon:
+# sudo restart systemd-logind
+or, from 15.04 onwards:
+# sudo service systemd-logind restart
+
+
+Install isc dhcpd server
+
+# sudo apt-get install isc-dhcp-server
+
+Backup current /etc/dhcp/dhcpd.conf
+# sudo cp /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.bak
+
+edit /etc/dhcp/dhcpd.conf
+# sudo joe /etc/dhcp/dhcpd.conf
+
+replace file contents with
+
+##
+## Todays date
+## /etc/dhcp/dhcpd.conf
+##
+
+authoritative;
+log-facility local7;
+default-lease-time 600;
+max-lease-time 7200;
+option domain-name "tmf.local";
+option domain-name-servers 8.8.8.8, 8.8.4.4;
+option routers 10.10.50.1;
+option broadcast-address 10.10.50.255;
+option subnet-mask 255.255.255.0;
+# option netbios-name-servers 192.168.1.1;
+# option netbios-node-type 8; # default
+
+# Subnet declaration.
+subnet 10.10.50.0 netmask 255.255.255.224 {
+range 10.10.50.99 10.10.50.253;
+}
+
+Save file
+
+when ready to enable dhcpd server check device for routing
+
+# ip route
+default via 192.168.0.1 dev eth0
+192.168.0.0/24 dev eth0  proto kernel  scope link  src 192.168.0.146
+
+edit /etc/default/isc-dhcp-server
+# sudo joe /etc/default/isc-dhcp-server
+
+edit line
+INTERFACES="insert network interface"
+
+save file
+
+Install FOG
+
+Activate root login
+
+# sudo su -
+# passwd root
+Enter new password for root user
+
+restart the machine 
+# shutdown -r now
+
+Download FOG project files
+# wget link-to-the-latest-fog-installer 
+
+
+
+
+
+
+
+
+
+
+
