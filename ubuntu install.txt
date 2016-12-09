@@ -124,8 +124,31 @@ Enter new password for root user
 restart the machine 
 # shutdown -r now
 
-Download FOG project files
-# wget link-to-the-latest-fog-installer 
+Install git
+# sudo apt-get update && apt-get install git
+
+Create folder for the git repo
+# sudo mkdir /root/fogproject
+
+Initial checkout
+# sudo -i
+# git clone https://github.com/FOGProject/fogproject.git /root/fogproject
+
+Then navigate to the folder you specified and run:
+# cd /root/fogproject/bin
+# ./installfog.sh
+
+Update to latest
+As the development tree of FOG changes quiet often (pretty much daily!) you might want to update to the very latest version from time to time. To do this use the following commands:
+
+# cd /root/fogproject
+# git pull
+# cd bin
+# ./installfog.sh
+
+Check your git version
+# cd /root/fogproject
+# git log -1<noinclude>
 
 
 
