@@ -139,8 +139,7 @@ Then navigate to the folder you specified and run:
 # ./installfog.sh
 
 Update to latest
-As the development tree of FOG changes quiet often (pretty much daily!) you might want to update to the very latest version from time to time. To do this use the following commands:
-
+(As the development tree of FOG changes quiet often (pretty much daily!) you might want to update to the very latest version from time to time.) 
 # cd /root/fogproject
 # git pull
 # cd bin
