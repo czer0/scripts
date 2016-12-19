@@ -1,0 +1,11 @@
+choco script
+
+
+@powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+
+cinst notepadplusplus.install foxitreader googlechrome jre8 7zip.install sysinternals powershell4 filezilla putty thunderbird libreoffice classic-shell teamviewer wget wireshark winscp.install cdburnerxp sourcetree googledrive cmder mremoteng k-litecodecpackfull -y
+
+choco script
+
+cinst notepadplusplus.install foxitreader googlechrome jre8 7zip.install sysinternals powershell4 filezilla putty thunderbird libreoffice hashcheck hashtab classic-shell teamviewer cdburnerxp sourcetree googledrive cmder k-litecodecpackfull -y
+

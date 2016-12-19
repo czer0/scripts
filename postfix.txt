@@ -1,0 +1,134 @@
+Nagios setup
+
+Download Nagios and the Plugins
+
+Create a directory for storing the downloads.
+# mkdir ~/downloads
+# cd ~/downloads
+
+Download the source code tarballs of both Nagios Core and the Nagios plugins (visit https://www.nagios.org/download/ for links to the latest versions). These directions were tested with Nagios 4.2.1 and Nagios Plugins 2.1.3.
+
+wget http://prdownloads.sourceforge.net/sourceforge/nagios/nagios-*.gz
+wget http://prdownloads.sourceforge.net/sourceforge/nagiosplug/nagios-plugins-*.tar.gz
+
+
+IF YOU PLAN TO HAVE EMAIL RELAYING
+Install Postfix smtp.gmail.com Relay
+
+Install packages
+# sudo apt-get install postfix mailutils libsasl2-2 ca-certificates libsasl2-modules
+
+Error that may appear
+Postfix was not set up.  Start with
+  cp /usr/share/postfix/main.cf.debian /etc/postfix/main.cf
+.  If you need to make changes, edit
+/etc/postfix/main.cf (and others) as needed.  To view Postfix configuration
+values, see postconf(1).
+
+After modifying main.cf, be sure to run '/etc/init.d/postfix reload'.
+
+Fix error by creating postfix config file 
+# Sudo cp /usr/share/postfix/main.cf.debian /etc/postfix/main.cf
+
+
+Edit the main Postfix configuration file:
+sudo joe /etc/postfix/main.cf
+
+Add the following to main.cf
+relayhost = [smtp.gmail.com]:587
+smtp_use_tls = yes
+smtp_sasl_auth_enable = yes
+smtp_sasl_security_options =
+smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
+smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt
+
+
+Edit password file
+sudo joe /etc/postfix/sasl_passwd
+
+Add the following
+[smtp.gmail.com]:587    USERNAME@themoneyfinder.ca:PASSWORD
+
+
+Use postmap to compile and hash the contents of sasl_passwd. The results will be stored in your Postfix configuration directory in the file sasl_passwd.db.
+# postmap /etc/postfix/sasl_passwd
+
+Start postfix
+# sudo /etc/init.d/postfix start
+
+Reload postfix config for changes to take effect:
+# sudo /etc/init.d/postfix reload
+
+
+Compile and Install Nagios Core
+
+Extract the Nagios Core source code tarball.
+
+# cd ~/downloads
+# tar xzf nagios-4.2.1.tar.gz
+# cd nagios-*
+
+Run the Nagios configure script:
+# ./configure --with-nagios-group=nagios --with-command-group=nagcmd --with-mail=/usr/sbin/postfix
+
+Compile the Nagios Core source code.
+# make all
+
+
+Install binaries, init script, sample config files and set permissions on the external command directory.
+
+# sudo make install
+# sudo make install-init
+# sudo make install-config
+# sudo make install-commandmode
+
+
+Edit the /usr/local/nagios/etc/objects/contacts.cfg config file and change the email address associated with the nagiosadmin contact definition to the address you'd like to use for receiving alerts.
+# sudo joe /usr/local/nagios/etc/objects/contacts.cfg
+
+Install the Nagios Core web config file in the Apache conf.d directory.
+# sudo make install-webconf
+
+Create a nagiosadmin account for logging into the Nagios Core web interface. Remember the password you assign to this account - you'll need it later.
+# sudo htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
+
+Restart Apache to make the new settings take effect.
+# sudo /etc/init.d/apache2 reload
+
+
+Compile and Install the Nagios Plugins
+
+Extract the Nagios plugins source code tarball.
+
+# cd ~/downloads
+# tar xzf nagios-plugins-*.tar.gz
+# cd nagios-plugins-*
+
+Compile and install the plugins.
+
+# sudo ./configure --with-nagios-user=nagios --with-nagios-group=nagios --with-openssl
+# sudo make
+# sudo make install
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
