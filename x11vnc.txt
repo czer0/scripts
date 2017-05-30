@@ -1,0 +1,51 @@
+Take advantage of new -auth guess functionality in x11vnc - which helps!
+Update for systemd (not upstart)
+Run the following to install:
+
+sudo apt-get install x11vnc
+sudo x11vnc -storepasswd /etc/x11vnc.pass
+# for Ubuntu 15.04+
+sudo nano /lib/systemd/system/x11vnc.service
+# for Ubuntu 16.10+
+sudo joe /etc/systemd/system/x11vnc.service
+
+Insert this into the file:
+
+for XFCE
+[Unit]
+Description="x11vnc"
+Requires=display-manager.service
+After=display-manager.service
+
+[Service]
+ExecStart=/usr/bin/x11vnc -ncache 10 -xkb -noxrecord -noxfixes -noxdamage -display :0 -auth guess -rfbauth /etc/x11vnc.pass
+ExecStop=/usr/bin/killall x11vnc
+Restart=on-failure
+Restart-sec=2
+
+[Install]
+WantedBy=multi-user.target
+
+
+For Gnome
+
+[Unit]
+Description=Start x11vnc at startup.
+After=multi-user.target
+ 
+[Service]
+Type=simple
+ExecStart=/usr/bin/x11vnc  -auth /var/gdm/:0.Xauth -display :0 -forever -ncache 10 -loop -noxdamage -repeat -rfbauth /etc/x11vnc.pass -rfbport 5900 -shared
+ 
+[Install]
+WantedBy=multi-user.target
+
+
+Then, start with:
+
+sudo systemctl daemon-reload
+sudo systemctl start x11vnc.service
+
+and ensure the service starts on boot:
+
+sudo systemctl enable x11vnc.service
