@@ -3,4 +3,4 @@ choco script
 
 @powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
 
-cinst classic-shell googlechrome sysinternals notepadplusplus.install discord foxitreader telegram 7zip.install powershell4 filezilla putty thunderbird libreoffice hashcheck hashtab hexchat teamviewer steam wget wireshark winscp.install cdburnerxp sourcetree googledrive cmder mremoteng k-litecodecpackfull gpg4win mpc-hc javaruntime etcher rufus partitionmasterfree flux -y
+cinst classic-shell googlechrome sysinternals notepadplusplus.install discord foxitreader telegram 7zip.install powershell4 filezilla putty thunderbird libreoffice hashcheck hashtab hexchat teamviewer steam wget wireshark winscp.install cdburnerxp sourcetree googledrive cmder mremoteng k-litecodecpackfull gpg4win mpc-hc javaruntime etcher rufus steam-cleaner partitionmasterfree flux -y
