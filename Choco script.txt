@@ -8,7 +8,7 @@ cinst classic-shell googlechrome sysinternals notepadplusplus.install discord fo
 
 Xtra Sales
 
-cinst classic-shell googlechrome sysinternals notepadplusplus.install foxitreader 7zip.install powershell4 teamviewer wget winscp.install cdburnerxp googledrive cmder k-litecodecpackfull mpc-hc javaruntime f.lux.install -y
+cinst googlechrome sysinternals notepadplusplus.install foxitreader 7zip.install powershell4 winscp.install cdburnerxp cmder k-litecodecpackfull mpc-hc -y
 
 Xtra Techs
 
