@@ -4,7 +4,7 @@ Using CMD
 @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
 
 Personal
-cinst classic-shell googlechrome sysinternals notepadplusplus.install discord foxitreader evernote telegram 7zip.install powershell4 filezilla putty thunderbird libreoffice hashcheck hashtab calibre skype hexchat teamviewer deluge steam wget wireshark winscp.install cdburnerxp sourcetree googledrive paint.net cmder mremoteng twitch yakyak k-litecodecpackfull lastfmscrobbler angryip gpg4win duckietv mpc-hc javaruntime etcher rufus steam-cleaner partitionmasterfree f.lux.install -y
+cinst open-shel brave firefox googlechrome sysinternals notepadplusplus.install discord foxitreader evernote telegram 7zip.install powershell4 filezilla putty thunderbird libreoffice hashcheck hashtab calibre skype hexchat teamviewer deluge steam wget wireshark winscp.install cdburnerxp sourcetree googledrive paint.net cmder mremoteng twitch yakyak k-litecodecpackfull lastfmscrobbler angryip gpg4win duckietv mpc-hc javaruntime etcher rufus win32diskimager steam-cleaner partitionmasterfree f.lux.install -y
 
 Xtra Sales
 cinst open-shell googlechrome sysinternals notepadplusplus.install foxitreader 7zip.install powershell4 cdburnerxp k-litecodecpackfull mpc-hc adobereader -y
